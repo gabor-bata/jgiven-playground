@@ -1,10 +1,13 @@
-package jgiven.playground;
+package jgiven.playground.service;
 
 import static java.util.Arrays.stream;
 import java.util.List;
 
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
+import java.util.Optional;
+import org.springframework.stereotype.Component;
+
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -12,7 +15,8 @@ import static java.util.stream.Collectors.toList;
  *
  * @author Gabor_Bata
  */
-public class StringSplitter {
+@Component
+public class StringSplitterService {
 
     private static final String DEFAULT_DELIMITER = " ";
 
@@ -35,7 +39,7 @@ public class StringSplitter {
      */
     public List<String> split(String string, String delimiter) {
         requireNonNull(string);
-        requireNonNull(delimiter);
-        return unmodifiableList(stream(string.split(delimiter)).collect(toList()));
+        String resolvedDelimiter = Optional.ofNullable(delimiter).orElse(DEFAULT_DELIMITER);
+        return unmodifiableList(stream(string.split(resolvedDelimiter)).collect(toList()));
     }
 }

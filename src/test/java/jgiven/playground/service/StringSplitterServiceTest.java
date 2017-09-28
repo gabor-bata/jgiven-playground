@@ -1,34 +1,34 @@
+package jgiven.playground.service;
 
 import com.tngtech.jgiven.Stage;
 import com.tngtech.jgiven.annotation.Quoted;
 import com.tngtech.jgiven.annotation.ScenarioState;
 import com.tngtech.jgiven.junit.ScenarioTest;
-import static java.util.Arrays.asList;
 import java.util.List;
-import static java.util.Objects.requireNonNull;
-import jgiven.playground.StringSplitter;
+import org.junit.Test;
+
+import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import org.junit.Test;
 
 /**
- * Unit test for {@link StringSplitter}, using {@link ScenarioTest} as base.
+ * Unit test for {@link StringSplitterService}, using {@link ScenarioTest} as base.
  *
  * @author Gabor_Bata
  */
-public class StringSplitterTest extends ScenarioTest<StringSplitterTest.GivenStage, StringSplitterTest.WhenStage, StringSplitterTest.ThenStage> {
+public class StringSplitterServiceTest extends ScenarioTest<StringSplitterServiceTest.GivenStage, StringSplitterServiceTest.WhenStage, StringSplitterServiceTest.ThenStage> {
 
     @Test
     public void should_properly_split_name_using_the_default_delimiter() {
-        given().a_string_splitter();
+        given().a_string_splitter_service();
         when().splits_$name("John Doe");
         then().the_result_equals_to_$names(asList("John", "Doe"));
     }
 
     @Test
     public void should_properly_split_name_using_a_given_delimiter() {
-        given().a_string_splitter().and().$delimiter_as_delimiter(",");
+        given().a_string_splitter_service().and().$delimiter_as_delimiter(",");
         when().splits_$name("John,Doe");
         then().the_result_equals_to_$names(asList("John", "Doe"));
     }
@@ -36,28 +36,26 @@ public class StringSplitterTest extends ScenarioTest<StringSplitterTest.GivenSta
     protected static class GivenStage extends Stage<GivenStage> {
 
         @ScenarioState
-        private StringSplitter stringSplitter;
+        private StringSplitterService stringSplitter;
 
         @ScenarioState
         private String delimiter;
 
-        public GivenStage a_string_splitter() {
-            this.stringSplitter = new StringSplitter();
+        public GivenStage a_string_splitter_service() {
+            this.stringSplitter = new StringSplitterService();
             return self();
         }
 
         public GivenStage $delimiter_as_delimiter(@Quoted String delimiter) {
-            requireNonNull(delimiter);
             this.delimiter = delimiter;
             return self();
         }
-
     }
 
     protected static class WhenStage extends Stage<WhenStage> {
 
         @ScenarioState(required = true)
-        private StringSplitter stringSplitter;
+        private StringSplitterService stringSplitter;
 
         @ScenarioState
         private String delimiter;
@@ -66,11 +64,7 @@ public class StringSplitterTest extends ScenarioTest<StringSplitterTest.GivenSta
         private List<String> result;
 
         public void splits_$name(@Quoted String name) {
-            if (delimiter == null) {
-                result = stringSplitter.split(name);
-            } else {
-                result = stringSplitter.split(name, delimiter);
-            }
+            result = stringSplitter.split(name, delimiter);
         }
     }
 
