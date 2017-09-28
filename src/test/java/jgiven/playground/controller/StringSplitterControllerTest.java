@@ -8,8 +8,10 @@ import jgiven.playground.controller.stage.StringSplitterControllerStage;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.OK;
 
 /**
  * Test for {@link StringSplitterController}.
@@ -26,15 +28,15 @@ public class StringSplitterControllerTest extends SimpleSpringScenarioTest<Strin
     public void the_path_split_shoult_split_the_given_string_using_the_default_delimiter() throws Exception {
         given().path("/split/Homer Simpson");
         when().get();
-        then().the_status_is(HttpStatus.OK).and().the_content_is("[\"Homer\", \"Simpson\"]");
+        then().the_status_is(OK).and().the_content_is("[\"Homer\", \"Simpson\"]");
     }
 
     @Test
     @As("The path '/split' should split the given string using the given delimiter")
     public void the_path_split_shoult_split_the_given_string_using_the_given_delimiter() throws Exception {
-        given().path("/split/Homer,Simpson").with().delimiter(",");
+        given().path("/split/Homer,Simpson").with().delimiter_parameter(",");
         when().get();
-        then().the_status_is(HttpStatus.OK).and().the_content_is("[\"Homer\", \"Simpson\"]");
+        then().the_status_is(OK).and().the_content_is("[\"Homer\", \"Simpson\"]");
     }
 
     @Test
@@ -42,6 +44,6 @@ public class StringSplitterControllerTest extends SimpleSpringScenarioTest<Strin
     public void the_path_foo_returns_not_found() throws Exception {
         given().path("/foo");
         when().get();
-        then().the_status_is(HttpStatus.NOT_FOUND);
+        then().the_status_is(NOT_FOUND);
     }
 }

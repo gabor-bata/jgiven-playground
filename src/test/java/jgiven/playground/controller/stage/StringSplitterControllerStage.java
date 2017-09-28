@@ -24,11 +24,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @JGivenStage
 public class StringSplitterControllerStage extends Stage<StringSplitterControllerStage> {
 
-    private MockMvc mvc;
-
     @Autowired
     private StringSplitterController stringSplitterController;
 
+    private MockMvc mvc;
     private String path;
     private String delimiter;
     private ResultActions mvcResult;
@@ -43,7 +42,7 @@ public class StringSplitterControllerStage extends Stage<StringSplitterControlle
         return this;
     }
 
-    public StringSplitterControllerStage delimiter(@Quoted String delimiter) {
+    public StringSplitterControllerStage delimiter_parameter(@Quoted String delimiter) {
         this.delimiter = delimiter;
         return this;
     }
