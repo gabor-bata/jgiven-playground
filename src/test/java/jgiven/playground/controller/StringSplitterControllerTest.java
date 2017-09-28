@@ -26,7 +26,7 @@ public class StringSplitterControllerTest extends SimpleSpringScenarioTest<Strin
     public void the_path_split_shoult_split_the_given_string_using_the_default_delimiter() throws Exception {
         given().path("/split/Homer Simpson");
         when().get();
-        then().the_status_is(HttpStatus.OK).and().the_content_is("[\"Homer\",\"Simpson\"]");
+        then().the_status_is(HttpStatus.OK).and().the_content_is("[\"Homer\", \"Simpson\"]");
     }
 
     @Test
@@ -34,7 +34,7 @@ public class StringSplitterControllerTest extends SimpleSpringScenarioTest<Strin
     public void the_path_split_shoult_split_the_given_string_using_the_given_delimiter() throws Exception {
         given().path("/split/Homer,Simpson").with().delimiter(",");
         when().get();
-        then().the_status_is(HttpStatus.OK).and().the_content_is("[\"Homer\",\"Simpson\"]");
+        then().the_status_is(HttpStatus.OK).and().the_content_is("[\"Homer\", \"Simpson\"]");
     }
 
     @Test

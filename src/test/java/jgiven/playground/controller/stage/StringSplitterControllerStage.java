@@ -13,8 +13,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static org.hamcrest.Matchers.equalTo;
-
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -61,7 +59,7 @@ public class StringSplitterControllerStage extends Stage<StringSplitterControlle
     }
 
     public StringSplitterControllerStage the_content_is(String content) throws Exception {
-        mvcResult.andExpect(content().string(equalTo(content)));
+        mvcResult.andExpect(content().json(content));
         return this;
     }
 }
