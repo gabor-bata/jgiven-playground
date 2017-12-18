@@ -74,7 +74,7 @@ public class StringSplitterServiceTest extends ScenarioTest<StringSplitterServic
         private List<String> result;
 
         public void the_result_equals_to_$names(List<String> names) {
-            assertThat(names, is(equalTo(names)));
+            assertThat(result, is(equalTo(names)));
         }
     }
 }

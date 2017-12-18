@@ -37,8 +37,8 @@ public class StringSplitterServiceSimpleScenarioTest extends SimpleScenarioTest<
             names = stringSplitter.split(name);
         }
 
-        public void the_result_equals_to_$names(List<String> names) {
-            assertThat(names, is(equalTo(names)));
+        public void the_result_equals_to_$names(List<String> expectedNames) {
+            assertThat(names, is(equalTo(expectedNames)));
         }
     }
 }
