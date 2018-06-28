@@ -4,4 +4,4 @@
 
 Reports can be found under: `target/jgiven-reports/html/index.html`
 
-[![Build Status](https://travis-ci.org/gaborbata/jgiven-playground.svg?branch=master)](https://travis-ci.org/gaborbata/jgivenplayground)
+[![Build Status](https://travis-ci.org/gaborbata/jgiven-playground.svg?branch=master)](https://travis-ci.org/gaborbata/jgiven-playground)
