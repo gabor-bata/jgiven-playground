@@ -39,7 +39,7 @@ public class StringSplitterService {
      */
     public List<String> split(String string, String delimiter) {
         requireNonNull(string);
-        String resolvedDelimiter = Optional.ofNullable(delimiter).orElse(DEFAULT_DELIMITER);
+        var resolvedDelimiter = Optional.ofNullable(delimiter).orElse(DEFAULT_DELIMITER);
         return unmodifiableList(stream(string.split(resolvedDelimiter)).collect(toList()));
     }
 }
